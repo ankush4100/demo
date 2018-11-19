@@ -15,15 +15,13 @@ pipeline {
 
 						sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
 						
-						pom = readMavenPom file: 'pom.xml'
-						print pom.version
+						
 
                     } else {
 					
                         bat(/"${mvnHome}\bin\mvn" -Dintegration-tests.skip=true clean package/)
 						
-						pom = readMavenPom file: 'pom.xml'
-						print pom.version
+						
                         
 
 						
