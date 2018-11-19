@@ -1,7 +1,7 @@
 pipeline {
 	environment {
-    registry = “ankush4100/demo”
-    registryCredential = ‘demo’
+    registry = "ankush4100/demo"
+    registryCredential = 'demo'
     dockerImage = ''
   }
     agent any
@@ -35,7 +35,7 @@ pipeline {
 	    stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + “:$BUILD_NUMBER”
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
