@@ -1,11 +1,25 @@
 pipeline {
     agent any
-    
+def mvnHome=tool name: 'maven-3.6.0', type: 'maven'
     stages {
         stage ('Compile Stage') {
-        def n=mvnHome=tool name: 'maven-3.6.0', type: 'maven'
-                sh "{$mvnHome}/bin/mvn clean package"
+
+            steps {
+                
+                sh "${mvnHome}/bin/mvn clean compile"
+                
+            }
         }
 
+        
+
+
+        stage ('Deployment Stage') {
+            steps {
+                
+                   sh "${mvnHome}/bin/mvn deploy"
+                
+            }
+        }
     }
 }
