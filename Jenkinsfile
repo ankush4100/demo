@@ -1,21 +1,43 @@
 pipeline {
     agent any
     stages {
-        stage ('Compile Stage') {
-def mvnHome= tool name: 'maven-3.6.0', type: 'maven'
-            steps {
-                
-                sh "${mvnHome}/bin/mvn clean compile"
-                
-            }
-        }
+        stage('Build') {
 
-        stage ('Deployment Stage') {
-            def mvnHome= tool name: 'maven-3.6.0', type: 'maven'
             steps {
-                   sh "${mvnHome}/bin/mvn deploy"
-                
+
+                script {
+				
+				
+				
+                    def mvnHome = tool 'Maven'
+
+                    if (isUnix()) {
+
+						sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
+						
+						pom = readMavenPom file: 'pom.xml'
+						print pom.version
+
+                    } else {
+					
+                        bat(/"${mvnHome}\bin\mvn" -Dintegration-tests.skip=true clean package/)
+						
+						pom = readMavenPom file: 'pom.xml'
+						print pom.version
+                        
+
+						
+                    }
+
+                }
+
+
+
             }
+
         }
+        
+
+        
     }
 }
