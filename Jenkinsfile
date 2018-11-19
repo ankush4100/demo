@@ -5,12 +5,9 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-		    script {
-                bat(/"${mvnHome}\bin\mvn" -Dintegration-tests.skip=true clean package/)
-						
-						pom = readMavenPom file: 'pom.xml'
-						print pom.version
-		    }
+                withMaven(maven : 'maven_3_6_0') {
+                    sh 'mvn clean compile'
+                }
             }
         }
 
