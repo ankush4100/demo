@@ -9,7 +9,7 @@ pipeline {
 				
 				
 				
-                    def mvnHome = tool 'Maven'
+                    def mvnHome = tool name: 'maven-3.6.0', type: 'maven'
 
                     if (isUnix()) {
 
