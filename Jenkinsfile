@@ -1,14 +1,8 @@
 pipeline {
-	
-    agent none
+    agent any
     stages {
         stage('Build') {
 
-		 agent {
-        docker {
-          image 'maven:3.6.0'
-        }
-		 }
             steps {
 
                 script {
@@ -18,11 +12,18 @@ pipeline {
                     def mvnHome = tool name: 'maven-3.6.0', type: 'maven'
 
                     if (isUnix()) {
+
 						sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
+						
+						
 
                     } else {
 					
                         bat(/"${mvnHome}\bin\mvn" -Dintegration-tests.skip=true clean package/)
+						
+						
+                        
+
 						
                     }
 
@@ -33,9 +34,6 @@ pipeline {
             }
 
         }
-	   
-	   
-         
         
 
         
