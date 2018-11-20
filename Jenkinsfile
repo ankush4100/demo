@@ -32,13 +32,12 @@ pipeline {
             }
 
         }
-	    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
+	   stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t ankush4100/jenkins-example-2.3-SNAPSHOT:latest .'
       }
-    }
+    } 
 	    
 	   
          
