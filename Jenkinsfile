@@ -4,10 +4,14 @@ pipeline {
     registryCredential = 'demo'
     dockerImage = ''
   }
-    agent any
+    agent none
     stages {
         stage('Build') {
 
+		 agent {
+        docker {
+          image 'maven:3.6.0'
+        }
             steps {
 
                 script {
@@ -35,7 +39,7 @@ pipeline {
 	   stage('Docker Build') {
       agent any
       steps {
-        bat 'docker build -t ankush4100/jenkins-example-2.3-SNAPSHOT:latest .'
+        bat 'docker build -t ankush4100/jenkins-example-2.3-SNAPSHOT:latest.'
       }
     } 
 	    
