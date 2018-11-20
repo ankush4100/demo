@@ -40,7 +40,8 @@ pipeline {
 	   stage('Docker Build') {
       agent any
       steps {
-        bat 'docker build -t pipelineJenkinsexample/jenkins-example-2.3-SNAPSHOT:latest.'
+	      def doc= tool name: 'ankush4100', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+	      bat "${doc} build -t pipelineJenkinsexample/jenkins-example-2.3-SNAPSHOT:latest."
       }
     } 
 	    
