@@ -12,6 +12,7 @@ pipeline {
         docker {
           image 'maven:3.6.0'
         }
+		 }
             steps {
 
                 script {
