@@ -21,10 +21,6 @@ pipeline {
 					
                         bat(/"${mvnHome}\bin\mvn" -Dintegration-tests.skip=true clean package/)
 						
-						
-                        
-
-						
                     }
 
                 }
@@ -34,6 +30,10 @@ pipeline {
             }
 
         }
+	    stage('Build image') {
+
+        app = docker.build("ankush4100/demo")
+    }
         
 
         
