@@ -35,7 +35,7 @@ pipeline {
         }
 	   stage('Back-end') {
             agent {
-                docker { image 'maven:3-alpine' }
+                docker { image 'maven:3.6.0-alpine' }
             }
             steps {
                 bat 'mvn --version'
