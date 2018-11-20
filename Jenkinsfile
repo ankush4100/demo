@@ -1,9 +1,5 @@
 pipeline {
-	environment {
-    registry = "ankush4100/demo"
-    registryCredential = 'demo'
-    dockerImage = ''
-  }
+	
     agent none
     stages {
         stage('Build') {
